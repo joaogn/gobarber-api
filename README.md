@@ -9,6 +9,10 @@ Api para gerenciamento de serviços de beleza desenvolvida no bootcamp goStack d
 - NodeJs
 - Postgres
 - Sequelize
+- MongoDB
+- NodeMailer
+- Redis
+- Sentry
 - ESLint
 - Prettier
 - Nodemon
