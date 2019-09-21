@@ -64,7 +64,7 @@ class UserController {
 
     await user.update(req.body);
 
-    const { id, name, provider, avatar } = await User.findByPk(req.userId, {
+    const { id, name, avatar } = await User.findByPk(req.userId, {
       include: [
         {
           model: File,
@@ -77,7 +77,7 @@ class UserController {
     return res.json({
       id,
       name,
-      email: newEmail,
+      email,
       avatar,
     });
   }
