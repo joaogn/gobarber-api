@@ -4,6 +4,7 @@ import {
   setHours,
   setMinutes,
   setSeconds,
+  addHours,
   format,
   isAfter,
 } from 'date-fns';
@@ -39,13 +40,17 @@ class AvailableController {
       '13:00',
       '14:00',
       '15:00',
+      '15:00',
+      '17:00',
+      '18:00',
+      '19:00',
     ];
 
     const avaiable = schedule.map(time => {
       const [hour, minute] = time.split(':');
-      const value = setSeconds(
-        setMinutes(setHours(searchDate, hour), minute),
-        0
+      const value = addHours(
+        setSeconds(setMinutes(setHours(searchDate, hour), minute), 0),
+        3
       );
       return {
         time,
