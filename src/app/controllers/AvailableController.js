@@ -10,7 +10,7 @@ class AvailableController {
 
     const searchDate = Number(date);
 
-    const available = AvailableService.run({
+    const available = await AvailableService.run({
       provider_id: providerId,
       date: searchDate,
     });

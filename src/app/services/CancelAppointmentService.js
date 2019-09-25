@@ -5,6 +5,8 @@ import User from '../models/User';
 import CancellationMail from '../jobs/CanceldationMail';
 import Queue from '../../lib/Queue';
 
+import Cache from '../../lib/Cache';
+
 class CancelAppointmentServices {
   async run({ provider_id, user_id }) {
     const appointment = await Appointment.findByPk(provider_id, {
@@ -37,6 +39,10 @@ class CancelAppointmentServices {
     await appointment.save();
     // adicona o job de mandar email passando os dados
     await Queue.add(CancellationMail.key, { appointment });
+
+    // invalidate cache
+
+    await Cache.invalidadePrefix(`user:${user_id}:appointments`);
 
     return appointment;
   }
